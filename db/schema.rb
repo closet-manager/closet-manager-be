@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_24_205248) do
+ActiveRecord::Schema.define(version: 2023_03_24_215510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "items", force: :cascade do |t|
     t.bigint "user_id"
-    t.integer "season"
-    t.integer "type"
+    t.integer "season", default: 0
+    t.integer "clothing_type", default: 0
     t.string "size"
-    t.integer "color"
+    t.integer "color", default: 0
     t.string "image_url"
     t.string "notes"
     t.datetime "created_at", null: false
