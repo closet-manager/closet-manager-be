@@ -14,15 +14,25 @@ jobs:
         image: postgres:11-alpine
         ports:
           - "5432:5432"
-  
+        env:
+          POSTGRES_DB: closet_manager_be_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+    env:
+      RAILS_ENV: test
+      DATABASE_URL: "postgres://postgres:password@localhost:5432/closet_manager_be_test"
 
-steps:
-  - uses: actions/checkout@v3
-  - name: Set up Ruby
-    uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
-    with:
-      ruby-version: '2.7.2'
-  - name: Install dependencies
-    run: bundle install
-  - name: Run tests
-    run: bundle exec rspec
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
+        with:
+          ruby-version: '2.7.2'
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Set up database schema
+        run: bin/rails db:schema:load 
+        
+      - name: Run tests
+        run: bin/rake
