@@ -14,7 +14,7 @@ class Item < ApplicationRecord
   enum clothing_type: ["other", "tops", "bottoms", "shoes", "accessories", "outerwear"]
   enum color: ["unspecified", "red", "orange", "yellow", "green", "blue", "purple", "black", "white", "neutral", "multi"]
 
-  has_one_attached :image, service: :s3
+  has_one_attached :image # , service: :s3
 
   def image_url
     url_for(image)
