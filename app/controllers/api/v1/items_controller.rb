@@ -16,7 +16,6 @@ class Api::V1::ItemsController < ActionController::API
   private 
   
   def item_params
-    params.require(:item)
-          .permit(:user_id, :season, :clothing_type, :size, :color, :image, :notes)
+    params.permit(:user_id, :season, :clothing_type, :size, :color, :image, :notes)
   end
 end
