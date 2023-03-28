@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :api do 
     namespace :v1 do 
       resources :users, only: [:show] do
+        get '/items/find_all', to: 'items/search#show'
         resources :items, only: [:create]
       end
     end
