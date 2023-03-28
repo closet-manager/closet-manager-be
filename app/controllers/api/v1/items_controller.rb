@@ -1,4 +1,4 @@
-class Api::V1::ItemsController < ActionController::API
+class Api::V1::ItemsController < ApplicationController
 
   def create
     @user = User.find(params[:user_id])
