@@ -33,4 +33,27 @@ describe 'GET /users/:id' do
       expect(user_response[:data][:attributes][:email]).to be_a(String)
     end
   end
+
+  context 'if the user does not exists' do
+    it 'returns a user from the db' do
+
+      get "/api/v1/users/2"
+
+      user_response = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(404)
+
+      expect(user_response).to have_key(:error)
+      expect(user_response[:error]).to be_a(Array)
+
+      expect(user_response[:error][0]).to have_key(:title)
+      expect(user_response[:error][0][:title]).to be_a(String)
+      expect(user_response[:error][0][:title]).to match(/Couldn't find User with 'id'=2/)
+      
+      expect(user_response[:error][0]).to have_key(:status)
+      expect(user_response[:error][0][:status]).to be_a(String)
+      expect(user_response[:error][0][:status]).to eq("404")
+    end
+  end
 end
