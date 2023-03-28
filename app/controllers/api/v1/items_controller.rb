@@ -1,14 +1,12 @@
-class Api::V1::ItemsController < ActionController::API
+class Api::V1::ItemsController < ApplicationController
 
   def create
-    @user = User.find(params[:user_id])
-    # params[:user_id] = @user.id
-    @item = Item.create(item_params)
-    if @item.valid?
-      render json: ItemSerializer.new(@item)
+    user = User.find(params[:user_id])
+    item = Item.create(item_params)
+    if item.valid?
+      render json: ItemSerializer.new(item)
       
     else
-      #may need to set up rescue block here
       render json: { errors: item.errors }, status: 400
     end
   end
