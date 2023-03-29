@@ -14,6 +14,11 @@ class Api::V1::ItemsController < ApplicationController
     render json: ItemSerializer.new(Item.find(params[:id]))
   end
 
+  def index 
+    user = User.find(params[:user_id])
+    items = 
+  end
+
   private 
   
   def item_params
