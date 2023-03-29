@@ -56,17 +56,88 @@ describe 'GET /users/:id/items/find_all?' do
       expect(items_response[:data][0][:attributes]).to have_key(:notes)
       expect(items_response[:data][0][:attributes][:notes]).to eq(nil)
     end
+
+    it 'can find a users items based on two query filters' do
+      user = create(:user)
+      blob = ActiveStorage::Blob.create_after_upload!(
+                                                      io: File.open('src/assets/test_image.png'),
+                                                      filename: 'test_image.png',
+                                                      content_type: 'image/png'
+                                                      )
+      item1 = Item.create!(user_id: user.id, season: "spring", clothing_type: "tops", size: "L", color: "red")
+      item2 = Item.create!(user_id: user.id, season: "fall", clothing_type: "bottoms", size: "L", color: "black")
+      item3 = Item.create!(user_id: user.id, season: "fall", clothing_type: "bottoms", size: "L", color: "blue")
+      Item.all.each do |item|
+        item.image.attach(blob)
+      end
+
+      get "/api/v1/users/#{user.id}/items/find_all?season=fall&clothing_type=bottoms"
+
+      items_response = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(items_response).to have_key(:data)
+      expect(items_response[:data]).to be_a(Array)
+      expect(items_response[:data].count).to eq(2)
+      expect(items_response[:data][0][:id]).to eq(item2.id.to_s)
+      expect(items_response[:data][1][:id]).to eq(item3.id.to_s)
+
+    end
+
+    it 'can find a users items based on three query filters' do
+      user = create(:user)
+      blob = ActiveStorage::Blob.create_after_upload!(
+                                                      io: File.open('src/assets/test_image.png'),
+                                                      filename: 'test_image.png',
+                                                      content_type: 'image/png'
+                                                      )
+      item1 = Item.create!(user_id: user.id, season: "spring", clothing_type: "tops", size: "L", color: "red")
+      item2 = Item.create!(user_id: user.id, season: "fall", clothing_type: "bottoms", size: "L", color: "black")
+      item3 = Item.create!(user_id: user.id, season: "fall", clothing_type: "bottoms", size: "L", color: "blue")
+      Item.all.each do |item|
+        item.image.attach(blob)
+      end
+
+      get "/api/v1/users/#{user.id}/items/find_all?season=fall&clothing_type=bottoms&color=blue"
+
+      items_response = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(items_response).to have_key(:data)
+      expect(items_response[:data]).to be_a(Array)
+      expect(items_response[:data].count).to eq(1)
+      expect(items_response[:data][0][:id]).to eq(item3.id.to_s)
+    end
+
+    it 'can find a users items based on three query filters' do
+      user = create(:user)
+      blob = ActiveStorage::Blob.create_after_upload!(
+                                                      io: File.open('src/assets/test_image.png'),
+                                                      filename: 'test_image.png',
+                                                      content_type: 'image/png'
+                                                      )
+      item1 = Item.create!(user_id: user.id, season: "spring", clothing_type: "tops", size: "L", color: "red")
+      item2 = Item.create!(user_id: user.id, season: "fall", clothing_type: "bottoms", size: "L", color: "black")
+      item3 = Item.create!(user_id: user.id, season: "fall", clothing_type: "bottoms", size: "L", color: "blue")
+      Item.all.each do |item|
+        item.image.attach(blob)
+      end
+
+      get "/api/v1/users/#{user.id}/items/find_all?season=winter"
+
+      items_response = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(items_response).to have_key(:data)
+      expect(items_response[:data]).to be_a(Array)
+      expect(items_response[:data]).to eq([])
+      expect(items_response[:data].count).to eq(0)
+    end
   end
 end
-
-# item = Item.create(name: "Test Item")
-
-# # Create a new ActiveStorage blob with the image data
-# blob = ActiveStorage::Blob.create_after_upload!(
-#   io: File.open('path/to/test_image.jpg'),
-#   filename: 'test_image.jpg',
-#   content_type: 'image/jpeg'
-# )
-
-# Associate the blob with the item using an ActiveStorage attachment
-# item.image.attach(blob)
