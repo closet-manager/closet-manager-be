@@ -113,7 +113,7 @@ describe 'GET /users/:id/items/find_all?' do
       expect(items_response[:data][0][:id]).to eq(item3.id.to_s)
     end
 
-    it 'can find a users items based on three query filters' do
+    it 'can return an empty array if no items match the filters' do
       user = create(:user)
       blob = ActiveStorage::Blob.create_after_upload!(
                                                       io: File.open('src/assets/test_image.png'),
