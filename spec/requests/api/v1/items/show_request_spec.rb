@@ -53,6 +53,7 @@ describe 'GET /users/:user_id/items/:item_id' do
       # expect(item_data[:notes]).to be_a(String)
     end
   end
+  
   context 'the item does not exist' do
     it 'returns an error message' do
       user = create(:user)
