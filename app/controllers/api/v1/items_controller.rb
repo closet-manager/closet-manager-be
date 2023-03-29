@@ -9,6 +9,10 @@ class Api::V1::ItemsController < ApplicationController
       render json: { errors: item.errors }, status: 400
     end
   end
+  
+  def show
+    render json: ItemSerializer.new(Item.find(params[:id]))
+  end
 
   private 
   
