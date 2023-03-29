@@ -16,7 +16,7 @@ class Api::V1::ItemsController < ApplicationController
 
   def index 
     user = User.find(params[:user_id])
-    items = 
+    render json: ItemSerializer.new(user.items) 
   end
 
   private 
