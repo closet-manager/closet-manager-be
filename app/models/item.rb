@@ -14,7 +14,7 @@ class Item < ApplicationRecord
   enum clothing_type: { other: 0, tops: 1, bottoms: 2, shoes: 3, accessories: 4, outerwear: 5 }
   enum season: { all_season: 0, spring: 1, summer: 2, fall: 3, winter: 4 }
 
-  has_one_attached :image # , service: :s3
+  has_one_attached :image
 
   def image_url
     url_for(image)
