@@ -5,7 +5,6 @@ class Api::V1::ItemsController < ApplicationController
     item = Item.create(item_params)
     if item.valid?
       render json: ItemSerializer.new(item)
-      
     else
       render json: { errors: item.errors }, status: 400
     end
