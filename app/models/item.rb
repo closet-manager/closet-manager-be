@@ -9,12 +9,11 @@ class Item < ApplicationRecord
   validates :image, {
     presence: true
   }
-  
-  enum season: ["all season", "spring", "summer", "fall", "winter"]
-  enum clothing_type: ["other", "tops", "bottoms", "shoes", "accessories", "outerwear"]
-  enum color: ["unspecified", "red", "orange", "yellow", "green", "blue", "purple", "black", "white", "neutral", "multi"]
-  
-  # enum season: [:all_season, "spring", "summer", "fall", "winter"]
+
+  enum color: { unspecified: 0, red: 1, orange: 2, yellow: 3, green: 4, blue: 5, purple: 6, black: 7, white: 8, neutral: 9, multi: 10 }
+  enum clothing_type: { other: 0, tops: 1, bottoms: 2, shoes: 3, accessories: 4, outerwear: 5 }
+  enum season: { all_season: 0, spring: 1, summer: 2, fall: 3, winter: 4 }
+
   has_one_attached :image # , service: :s3
 
   def image_url
@@ -22,27 +21,11 @@ class Item < ApplicationRecord
   end
 
   def self.filter_by(season=nil, clothing_type=nil, color=nil)
-    if clothing_type.nil? && color.nil?
-      self
-      .where("season = ?", "#{season}")
-    elsif season.nil? && color.nil?
-      self
-      .where("clothing_type = ?", "#{clothing_type}")
-    elsif season.nil? && clothing_type.nil?
-      self
-      .where("color = ?", "#{color}")
-    elsif color.nil?
-      self
-      .where("season = ? AND clothing_type = ?", "#{season}", "#{clothing_type}")
-    elsif clothing_type.nil?
-      self
-      .where("season = ? AND color = ?", "#{season}", "#{color}")
-    elsif season.nil?
-      self
-      .where("clothing_type = ? AND color = ?", "#{clothing_type}", "#{color}")
-    else
-      self
-      .where("season = ? AND clothing_type = ? AND color = ?", "#{season}", "#{clothing_type}", "#{color}")
-    end
+    filter_hash = {}
+    filter_hash[:season] = season if season.present?
+    filter_hash[:clothing_type] = clothing_type if clothing_type.present?
+    filter_hash[:color] = color if color.present?
+    
+    self.where(filter_hash)
   end
 end

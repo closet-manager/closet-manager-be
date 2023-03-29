@@ -25,32 +25,32 @@ RSpec.describe Item, type: :model do
         item5 = Item.create!(user_id: user.id, season: "fall", clothing_type: "tops", size: "L", color: "orange")
 
         #season
-        expect(user.items.filter_by(1)).to eq([item1, item2])
-        expect(user.items.filter_by(4)).to eq([])
+        expect(user.items.filter_by("spring")).to eq([item1, item2])
+        expect(user.items.filter_by("winter")).to eq([])
 
         #clothing_type
-        expect(user.items.filter_by(nil, 2)).to eq([item3, item4])
-        expect(user.items.filter_by(nil, 4)).to eq([])
+        expect(user.items.filter_by(nil, "bottoms")).to eq([item3, item4])
+        expect(user.items.filter_by(nil, "accessories")).to eq([])
 
         #color
-        expect(user.items.filter_by(nil, nil, 2)).to eq([item1, item5])
-        expect(user.items.filter_by(nil, nil, 0)).to eq([])
+        expect(user.items.filter_by(nil, nil, "orange")).to eq([item1, item5])
+        expect(user.items.filter_by(nil, nil, "unspecified")).to eq([])
 
         #season && clothing_type && color
-        expect(user.items.filter_by(3, 2, 5)).to eq([item3, item4])
-        expect(user.items.filter_by(3, 2, 0)).to eq([])
+        expect(user.items.filter_by("fall", "bottoms", "blue")).to eq([item3, item4])
+        expect(user.items.filter_by("fall", "bottoms", "unspecified")).to eq([])
 
         #season && clothing_type
-        expect(user.items.filter_by(3, 1, nil)).to eq([item5])
-        expect(user.items.filter_by(3, 0, nil)).to eq([])
+        expect(user.items.filter_by("fall", "tops", nil)).to eq([item5])
+        expect(user.items.filter_by("fall", "other", nil)).to eq([])
 
         #season && color
-        expect(user.items.filter_by(3, nil, 5)).to eq([item3, item4])
-        expect(user.items.filter_by(3, nil, 0)).to eq([])
+        expect(user.items.filter_by("fall", nil, "blue")).to eq([item3, item4])
+        expect(user.items.filter_by("fall", nil, "unspecified")).to eq([])
 
         #clothing_type && color
-        expect(user.items.filter_by(nil, 2, 5)).to eq([item3, item4])
-        expect(user.items.filter_by(nil, 0, 5)).to eq([])
+        expect(user.items.filter_by(nil, "bottoms", "blue")).to eq([item3, item4])
+        expect(user.items.filter_by(nil, "other", "blue")).to eq([])
       end
     end
   end
