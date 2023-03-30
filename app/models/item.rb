@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
   include Rails.application.routes.url_helpers
-  before_validation :ensure_image_attached
+  after_save :ensure_image_attached
 
   belongs_to :user
   has_many :list_items, dependent: :destroy
@@ -32,10 +32,9 @@ class Item < ApplicationRecord
 
   private
 
-    def ensure_image_attached
-      require 'pry'; binding.pry
-      unless image.attached?
-        self.image.attach(io: File.open(Rails.root.join('src', 'assets', 'default-image.jpeg')), filename: 'default-image.jpeg', content_type: 'image/jpeg')
-      end
+  def ensure_image_attached
+    unless image.attached?
+      self.image.attach(io: File.open(Rails.root.join('src', 'assets', 'default-image.jpeg')), filename: 'default-image.jpeg', content_type: 'image/jpeg')
     end
+  end
 end
