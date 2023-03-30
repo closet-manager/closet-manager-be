@@ -14,7 +14,7 @@ class Api::V1::ListsController < ApplicationController
 
   private
 
-    def list_params
-      params.require(:list).permit(:name).merge(user_id: @user.id)
-    end
+  def list_params
+    params.require(:list).permit(:name).merge(user_id: @user.id)
+  end
 end
