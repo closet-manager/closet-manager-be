@@ -13,7 +13,7 @@ describe 'POST /users/:id/lists' do
       post "/api/v1/users/#{user.id}/lists", headers: headers, params: JSON.generate(list: list_params)
       
       list_response = JSON.parse(response.body, symbolize_names: true)
-      
+
       expect(response).to be_successful
       expect(response.status).to eq(201)
       expect(List.count).to eq(1)
@@ -35,6 +35,9 @@ describe 'POST /users/:id/lists' do
 
       expect(list_response[:data][:attributes]).to have_key(:user_id)
       expect(list_response[:data][:attributes][:user_id]).to be_a(Integer)
+
+      expect(list_response[:data][:attributes]).to have_key(:items)
+      expect(list_response[:data][:attributes][:items]).to be_a(Array)
     end
 
     it 'returns an error if the params are missing' do
