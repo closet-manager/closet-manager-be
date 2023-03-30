@@ -1,10 +1,10 @@
 class Api::V1::ItemsController < ApplicationController
-
+  
   def create
     user = User.find(params[:user_id])
     item = Item.create(item_params)
     if item.valid?
-      render json: ItemSerializer.new(item)
+      render json: ItemSerializer.new(item), status: 201
     else
       render json: { errors: item.errors }, status: 400
     end
