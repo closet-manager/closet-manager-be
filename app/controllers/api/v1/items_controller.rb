@@ -16,7 +16,7 @@ class Api::V1::ItemsController < ApplicationController
 
   def update
     item = Item.find(params[:id])
-    item.update(upate_item_params)
+    item.update(update_item_params)
     render json: ItemSerializer.new(item)
   end
 
@@ -31,7 +31,7 @@ class Api::V1::ItemsController < ApplicationController
     params.permit(:user_id, :season, :clothing_type, :size, :color, :image, :notes)
   end
   
-  def upate_item_params
+  def update_item_params
     params.require(:item).permit(:season, :clothing_type, :size, :color, :notes)
   end
 end
