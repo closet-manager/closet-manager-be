@@ -3,8 +3,8 @@ SimpleCov.start do
   add_filter "spec/rails_helper.rb"
 end
 
-require 'webmock/rspec'
-require 'vcr'
+# require 'webmock/rspec'
+# require 'vcr'
 
 # VCR.configure do |config|
 #   config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
