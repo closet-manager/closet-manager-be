@@ -4,7 +4,11 @@ class Api::V1::ItemsController < ApplicationController
     user = User.find(params[:user_id])
     item = Item.create(item_params)
 
-    render json: ItemSerializer.new(item), status: 201
+    if item.save
+      render json: ItemSerializer.new(item), status: 201
+    else
+      render json: { "message": "Please ensure no empty strings are passed in." }, status: 400
+    end
   end
   
   def show
