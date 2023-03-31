@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
   include Rails.application.routes.url_helpers
-  after_save :ensure_image_attached
+  # after_save :ensure_image_attached
 
   belongs_to :user
   has_many :list_items, dependent: :destroy
