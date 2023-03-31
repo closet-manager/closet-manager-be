@@ -95,4 +95,36 @@ describe 'POST /users/:id/items' do
       expect(item_response[:error][0][:status]).to be_a(String)
     end
   end
+
+  describe 'if empty strings are passed in' do
+    it 'returns an error message' do
+
+      user = create(:user)
+
+      headers = { "CONTENT_TYPE": "application/json"}
+      item_params = {
+                      "user_id": user.id,
+                      "season": "",
+                      "clothing_type": "shoes",
+                      "color": "black",
+                      "size": "7",
+                      "image": nil,
+                      "notes": "testing header"
+                    }
+
+      expect(Item.count).to eq(0)
+
+      post "/api/v1/users/#{user.id}/items", headers: headers, params: JSON.generate(item_params)
+
+      item_response = JSON.parse(response.body, symbolize_names: true)
+
+      expect(Item.count).to eq(0)
+      expect(response).to_not be_successful
+      expect(response.status).to eq(400)
+
+      expect(item_response).to have_key(:message)
+      expect(item_response[:message]).to be_a(String)
+      expect(item_response[:message]).to eq("Please ensure no empty strings are passed in.")
+    end
+  end
 end
