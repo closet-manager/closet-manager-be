@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   include Rails.application.routes.url_helpers
+  after_save :ensure_image_attached
 
   belongs_to :user
   has_many :list_items, dependent: :destroy
@@ -27,5 +28,13 @@ class Item < ApplicationRecord
     filter_hash[:color] = color if color.present?
     
     self.where(filter_hash)
+  end
+
+  private
+
+  def ensure_image_attached
+    unless image.attached?
+      self.image.attach(io: File.open(Rails.root.join('src', 'assets', 'default-image.jpeg')), filename: 'default-image.jpeg', content_type: 'image/jpeg')
+    end
   end
 end
