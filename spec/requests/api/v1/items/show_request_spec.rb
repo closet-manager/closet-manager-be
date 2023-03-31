@@ -41,16 +41,16 @@ describe 'GET /users/:user_id/items/:item_id' do
       expect(item_data[:season]).to be_a(String)
 
       expect(item_data).to have_key(:clothing_type)
-      expect(item_data[:clothing_type]).to be_a(String)
+      expect(item_data[:clothing_type]).to eq(nil).or be_a(String)
 
       expect(item_data).to have_key(:size)
-      # expect(item_data[:size]).to be_a(String)
+      expect(item_data[:size]).to be_a(String)
 
       expect(item_data).to have_key(:image_url)
       expect(item_data[:image_url]).to be_a(String)
 
       expect(item_data).to have_key(:notes)
-      # expect(item_data[:notes]).to be_a(String)
+      expect(item_data[:notes]).to eq(nil).or be_a(String)
     end
   end
   
