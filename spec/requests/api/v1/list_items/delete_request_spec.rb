@@ -65,7 +65,6 @@ describe 'DELETE /users/:user_id/list_items/:list_item_id' do
       expect(response_body).to have_key(:error)
       expect(response_body[:error]).to be_an(Array)
 
-  
       expect(response_body[:error][0]).to be_a(Hash)
       expect(response_body[:error][0]).to have_key(:title)
       expect(response_body[:error][0][:title]).to be_a(String)
