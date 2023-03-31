@@ -5,6 +5,12 @@ class Api::V1::ListsController < ApplicationController
     render json: ListSerializer.new(user.lists)
   end
 
+  def show
+    list = List.find(params[:id])
+
+    render json: ListSerializer.new(list)
+  end
+
   def create
     @user = User.find(params[:user_id])
     list = List.create!(list_params)

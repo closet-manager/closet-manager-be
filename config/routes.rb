@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       resources :users, only: [:show] do
         get '/items/find_all', to: 'items/search#show'
         resources :items, only: [:show, :create, :update, :index]
-        resources :lists, only: [:index, :create]
+        resources :lists, only: [:index, :show, :create]
         resources :list_items, only: [:destroy]
       end
       resources :items, only: [] do
