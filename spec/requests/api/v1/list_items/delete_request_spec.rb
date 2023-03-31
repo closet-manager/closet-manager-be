@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'DELETE /users/:user_id/list_items/:list_item_id' do
+describe 'DELETE /items/:item_id/lists/:list_id' do
   context 'when the list item exists' do
     it 'deletes the list item without deleting the associated list and item' do
       user = create(:user)
@@ -23,7 +23,7 @@ describe 'DELETE /users/:user_id/list_items/:list_item_id' do
       expect(List.count).to eq(1)
       expect(User.count).to eq(1)
 
-      delete "/api/v1/users/#{user.id}/list_items/#{list_item.id}"
+      delete "/api/v1/items/#{item.id}/lists/#{list.id}"
 
       expect(response).to be_successful
       expect(response.status).to eq(200)
@@ -50,14 +50,12 @@ describe 'DELETE /users/:user_id/list_items/:list_item_id' do
 
       list = List.create!(name: "Bach Trip", user_id: user.id)
 
-      list_item = ListItem.create!(item_id: item.id, list_id: list.id)
-
-      expect(ListItem.count).to eq(1)
+      expect(ListItem.count).to eq(0)
       expect(Item.count).to eq(1)
       expect(List.count).to eq(1)
       expect(User.count).to eq(1)
 
-      delete "/api/v1/users/#{user.id}/list_items/#{ListItem.last.id+1}"
+      delete "/api/v1/items/#{item.id}/lists/#{list.id}"
       response_body = JSON.parse(response.body, symbolize_names: true)
 
       expect(response).to_not be_successful
@@ -68,12 +66,12 @@ describe 'DELETE /users/:user_id/list_items/:list_item_id' do
       expect(response_body[:error][0]).to be_a(Hash)
       expect(response_body[:error][0]).to have_key(:title)
       expect(response_body[:error][0][:title]).to be_a(String)
-      expect(response_body[:error][0][:title]).to match(/Couldn't find ListItem with 'id'=#{ListItem.last.id+1}/)
+      expect(response_body[:error][0][:title]).to match(/Couldn't find ListItem/)
       
       expect(response_body[:error][0]).to have_key(:status)
       expect(response_body[:error][0][:status]).to be_a(String)
 
-      expect(ListItem.count).to eq(1)
+      expect(ListItem.count).to eq(0)
       expect(Item.count).to eq(1)
       expect(List.count).to eq(1)
       expect(User.count).to eq(1)
