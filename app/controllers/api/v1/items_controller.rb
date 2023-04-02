@@ -26,6 +26,13 @@ class Api::V1::ItemsController < ApplicationController
     render json: ItemSerializer.new(user.items) 
   end
 
+  def destroy 
+    item = Item.find(params[:id])
+    item.destroy
+
+    render json: { message: "Item has been successfully deleted" }
+  end
+
   private 
   
   def item_params
