@@ -13,9 +13,14 @@ class Api::V1::ListsController < ApplicationController
 
   def create
     @user = User.find(params[:user_id])
-    list = List.create!(list_params)
+    @list = List.create!(list_params)
 
-    render json: ListSerializer.new(list), status: 201
+    if @list.save!
+      # Tells the UserMailer to send a list creation email after save
+      UserMailer.with(user: @user).list_creation_email.deliver_now
+    end
+
+    render json: ListSerializer.new(@list), status: 201
   end
 
   private

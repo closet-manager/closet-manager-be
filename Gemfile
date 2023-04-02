@@ -31,6 +31,7 @@ gem 'rack-cors'
 gem 'jsonapi-serializer'
 gem 'faraday'
 gem 'dotenv-rails'
+gem 'actionmailer'
 
 
 group :development, :test do
