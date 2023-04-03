@@ -8,8 +8,8 @@ class Item < ApplicationRecord
 
   validates_presence_of :clothing_type, :season, :color
   validates :image, {
-    presence: true
-  }
+                      presence: true
+                    }
 
   enum color: { unspecified: 0, red: 1, orange: 2, yellow: 3, green: 4, blue: 5, purple: 6, black: 7, white: 8, neutral: 9, multi: 10 }
   enum clothing_type: { other: 0, tops: 1, bottoms: 2, shoes: 3, accessories: 4, outerwear: 5 }

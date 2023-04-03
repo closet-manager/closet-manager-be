@@ -15,7 +15,6 @@ describe 'POST /items/:item_id/lists/:list_id/list_items' do
       item.image.attach(blob)
 
       list = List.create!(name: "Bach Trip", user_id: user.id)
-      # headers = { "CONTENT_TYPE": "application/json" }
 
       expect(ListItem.count).to eq(0)
 
@@ -47,7 +46,6 @@ describe 'POST /items/:item_id/lists/:list_id/list_items' do
       item.image.attach(blob)
 
       list = List.create!(name: "Bach Trip", user_id: user.id)
-      # headers = { "CONTENT_TYPE": "application/json" }
 
       expect(ListItem.count).to eq(0)
 
@@ -84,7 +82,6 @@ describe 'POST /items/:item_id/lists/:list_id/list_items' do
       item.image.attach(blob)
 
       list = List.create!(name: "Bach Trip", user_id: user.id)
-      # headers = { "CONTENT_TYPE": "application/json" }
 
       expect(ListItem.count).to eq(0)
 

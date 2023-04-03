@@ -1,9 +1,7 @@
 class Api::V1::ItemsController < ApplicationController
-  
   def create
     user = User.find(params[:user_id])
     item = Item.create(item_params)
-
     if item.save
       render json: ItemSerializer.new(item), status: 201
     else
@@ -29,7 +27,6 @@ class Api::V1::ItemsController < ApplicationController
   def destroy 
     item = Item.find(params[:id])
     item.destroy
-
     render json: { message: "Item has been successfully deleted" }
   end
 
