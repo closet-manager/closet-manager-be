@@ -23,6 +23,13 @@ class Api::V1::ListsController < ApplicationController
     render json: ListSerializer.new(@list), status: 201
   end
 
+  def destroy
+    list = List.find(params[:id])
+    list.destroy
+
+    render json: { message: "List has been successfully deleted" }
+  end
+
   private
 
   def list_params
