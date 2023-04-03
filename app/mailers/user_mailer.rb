@@ -1,5 +1,4 @@
 class UserMailer < ApplicationMailer
-
   def list_creation_email
     @user = params[:user]
     @list = params[:list]
