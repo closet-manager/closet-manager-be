@@ -51,8 +51,6 @@ group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'simplecov'
-  gem 'webmock'
-  gem 'vcr'
 end
 
 gem 'aws-sdk-s3'
