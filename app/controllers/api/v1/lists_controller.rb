@@ -17,7 +17,7 @@ class Api::V1::ListsController < ApplicationController
 
     if @list.save!
       # Tells the UserMailer to send a list creation email after save
-      UserMailer.with(user: @user).list_creation_email.deliver_now
+      UserMailer.with(user: @user, list: @list).list_creation_email.deliver_now
     end
 
     render json: ListSerializer.new(@list), status: 201
