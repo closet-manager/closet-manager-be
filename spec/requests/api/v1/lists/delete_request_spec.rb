@@ -19,6 +19,7 @@ describe 'DELETE /user/:user_id/lists/:list_id' do
 
       expect(user.items.count).to eq(2)
       expect(user.lists.count).to eq(1)
+      expect(user.list_items.count).to eq(2)
       expect(list.items.count).to eq(2)
 
       delete "/api/v1/users/#{user.id}/lists/#{list.id}"
@@ -28,6 +29,7 @@ describe 'DELETE /user/:user_id/lists/:list_id' do
       expect{List.find(list.id)}.to raise_error(ActiveRecord::RecordNotFound)
       expect(user.items.count).to eq(2)
       expect(user.lists.count).to eq(0)
+      expect(user.list_items.count).to eq(0)
       expect(list.items.count).to eq(0)
     end
   end

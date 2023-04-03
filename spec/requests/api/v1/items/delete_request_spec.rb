@@ -17,7 +17,6 @@ describe 'DELETE /items/:item_id' do
       list_item1 = ListItem.create!(item_id: item1.id, list_id: list.id)
       list_item2 = ListItem.create!(item_id: item2.id, list_id: list.id)
 
-
       expect(user.items.count).to eq(2)
       expect(list.items.count).to eq(2)
 
