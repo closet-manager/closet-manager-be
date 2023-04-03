@@ -4,7 +4,7 @@
 
 # <p align="center"> :shirt:Closet Collection:womans_clothes: </p>
 
-This application exposes backend endpoints for our frontend application to consume. Working in a service-oriented architecture the frontend will communicate with this application through consuming our API in order to build an application that allows users to organize their closet. 
+This application exposes backend endpoints for our frontend application to consume. Working in a service-oriented architecture, the frontend will communicate with this application by consuming our API in order to build an application that allows users to organize their closet.
 
 You can find our Frontend Repo: [Here](https://github.com/closet-manager/closet-manager-fe) 
 
@@ -557,7 +557,7 @@ Example Value:
 
 ---
 
-### Create an List's Item
+### Create a List Item
 ```http
 POST "/api/v1/items/:item_id/lists/:list_id/list_items"
 ```
