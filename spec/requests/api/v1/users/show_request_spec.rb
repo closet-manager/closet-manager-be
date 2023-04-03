@@ -36,7 +36,6 @@ describe 'GET /users/:id' do
 
   context 'if the user does not exists' do
     it 'returns a user from the db' do
-
       get "/api/v1/users/2"
 
       user_response = JSON.parse(response.body, symbolize_names: true)

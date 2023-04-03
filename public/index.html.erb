@@ -1,76 +1,76 @@
-  <center>
-<head>
-    <img src="https://raw.githubusercontent.com/closet-manager/closet-manager-be/main/src/assets/closet_collection_logo.png" class="img-fluid" alt="closet_collection_logo" width="400" height="auto" />
-    <h1>Welcome to Closet Collection API</h1>
-</head>
-<br>
+<center>
+  <head>
+      <img src="https://raw.githubusercontent.com/closet-manager/closet-manager-be/main/src/assets/closet_collection_logo.png" class="img-fluid" alt="closet_collection_logo" width="400" height="auto" />
+      <h1>Welcome to Closet Collection API</h1>
+  </head>
+  <br>
 
   <article style="width:50%">
-<font size="+2">This application exposes backend endpoints for our frontend application to consume. Working in a service-oriented architecture, the frontend will communicate with this application by consuming our API in order to build an application that allows users to organize their closet.
-                You can find our Frontend Repo: <a href="https://github.com/closet-manager/closet-manager-fe">Here</a>
+    <font size="+2">This application exposes backend endpoints for our frontend application to consume. Working in a service-oriented architecture, the frontend will communicate with this application by consuming our API in order to build an application that allows users to organize their closet.
+                    You can find our Frontend Repo: <a href="https://github.com/closet-manager/closet-manager-fe">Here</a>
   </article>
 
-<br>
-<style>
-table, th, td {
-  border:3px solid black;
-  border-collapse: collapse;
-}
-</style>
-<table style="width:30%">
-  <tr>
-    <td style="text-align:center"><h4>Get a User</h4></td>
-    <td style="text-align:center"><h4>GET "/api/v1/user/:id"</h4></td>
-  </tr>
-  
-  <tr>
-    <td style="text-align:center"><h4>Get a User's Items</h4></td>
-    <td style="text-align:center"><h4>GET "/api/v1/users/:id/items"</h4></td>
-  </tr>  
-  
-  <tr>
-    <td style="text-align:center"><h4>Get One Item from a User</h4></td>
-    <td style="text-align:center"><h4>GET "/api/v1/users/:id/items/:id"</h4></td>
-  </tr>  
-  
-  <tr>
-    <td style="text-align:center"><h4>Get One Item from a User based off a category</h4></td>
-    <td style="text-align:center"><h4>GET "/api/v1/users/:id/items/find_all?clothing_type=#{clothing_type}&color=#{color}&season=#{season}"</h4></td>
-  </tr> 
-  
-  <tr>
-    <td style="text-align:center"><h4>Create an Item</h4></td>
-    <td style="text-align:center"><h4>POST "/api/v1/users/:id/items"</h4></td>
-  </tr>  
-  
-  <tr>
-    <td style="text-align:center"><h4>Delete a User's Item</h4></td>
-    <td style="text-align:center"><h4>DELETE "/api/v1/users/:id/items/:id"</h4></td>
-  </tr>  
-  
-  <tr>
-    <td style="text-align:center"><h4>Get one List from a User</h4></td>
-    <td style="text-align:center"><h4>GET "/api/v1/users/:id/lists/:id"</h4></td>
-  </tr>
+  <br>
+  <style>
+    table, th, td {
+      border:3px solid black;
+      border-collapse: collapse;
+    }
+  </style>
+  <table style="width:30%">
+    <tr>
+      <td style="text-align:center"><h4>Get a User</h4></td>
+      <td style="text-align:center"><h4>GET "/api/v1/user/:id"</h4></td>
+    </tr>
+    
+    <tr>
+      <td style="text-align:center"><h4>Get a User's Items</h4></td>
+      <td style="text-align:center"><h4>GET "/api/v1/users/:id/items"</h4></td>
+    </tr>  
+    
+    <tr>
+      <td style="text-align:center"><h4>Get One Item from a User</h4></td>
+      <td style="text-align:center"><h4>GET "/api/v1/users/:id/items/:id"</h4></td>
+    </tr>  
+    
+    <tr>
+      <td style="text-align:center"><h4>Get One Item from a User based off a category</h4></td>
+      <td style="text-align:center"><h4>GET "/api/v1/users/:id/items/find_all?clothing_type=#{clothing_type}&color=#{color}&season=#{season}"</h4></td>
+    </tr> 
+    
+    <tr>
+      <td style="text-align:center"><h4>Create an Item</h4></td>
+      <td style="text-align:center"><h4>POST "/api/v1/users/:id/items"</h4></td>
+    </tr>  
+    
+    <tr>
+      <td style="text-align:center"><h4>Delete a User's Item</h4></td>
+      <td style="text-align:center"><h4>DELETE "/api/v1/users/:id/items/:id"</h4></td>
+    </tr>  
+    
+    <tr>
+      <td style="text-align:center"><h4>Get one List from a User</h4></td>
+      <td style="text-align:center"><h4>GET "/api/v1/users/:id/lists/:id"</h4></td>
+    </tr>
 
-  <tr>
-    <td style="text-align:center"><h4>Create a List</h4></td>
-    <td style="text-align:center"><h4>POST "/api/v1/users/:id/lists"</h4></td>
-  </tr>
+    <tr>
+      <td style="text-align:center"><h4>Create a List</h4></td>
+      <td style="text-align:center"><h4>POST "/api/v1/users/:id/lists"</h4></td>
+    </tr>
 
-  <tr>
-    <td style="text-align:center"><h4>Delete a List</h4></td>
-    <td style="text-align:center"><h4>DELETE "/api/v1/users/:id/items/:id"</h4></td>
-  </tr>
+    <tr>
+      <td style="text-align:center"><h4>Delete a List</h4></td>
+      <td style="text-align:center"><h4>DELETE "/api/v1/users/:id/items/:id"</h4></td>
+    </tr>
 
-  <tr>
-    <td style="text-align:center"><h4>Create an List's Item</h4></td>
-    <td style="text-align:center"><h4>POST "/api/v1/items/:item_id/lists/:list_id"</h4></td>
-  </tr> 
+    <tr>
+      <td style="text-align:center"><h4>Create an List's Item</h4></td>
+      <td style="text-align:center"><h4>POST "/api/v1/items/:item_id/lists/:list_id"</h4></td>
+    </tr> 
 
-  <tr>
-    <td style="text-align:center"><h4>Delete a List Item</h4></td>
-    <td style="text-align:center"><h4>DELETE "/api/v1/items/:item_id/lists/:list_id"</h4></td>
-  </tr>
-</table>
+    <tr>
+      <td style="text-align:center"><h4>Delete a List Item</h4></td>
+      <td style="text-align:center"><h4>DELETE "/api/v1/items/:item_id/lists/:list_id"</h4></td>
+    </tr>
+  </table>
 </center>
