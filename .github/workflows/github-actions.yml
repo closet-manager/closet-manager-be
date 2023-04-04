@@ -38,7 +38,7 @@ jobs:
         run: bin/rake
 
   deployment:
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && github.event.pull_request.merged == true }}
     needs: test
     runs-on: ubuntu-latest
 
