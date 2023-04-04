@@ -89,7 +89,7 @@ Example Value:
 
 ---
 
-### Get a User's Items
+### Get all Items
 ```http
 GET "/api/v1/users/:user_id/items"
 ```
@@ -147,7 +147,7 @@ Example Value:
 
 ---
 
-### Get One Item from a User
+### Get One Item
 ```http
 GET "/api/v1/users/:user_id/items/:item_id"
 ```
@@ -189,7 +189,7 @@ Example Value:
 
 ---
 
-### Get One Item from a User based off a category
+### Get One Item based off a category
 ```http
 GET "/api/v1/users/:id/items/find_all?clothing_type=<clothing_type>&color=<color>&season=<season>"
 ```
@@ -342,7 +342,7 @@ Example Value:
 
 ---
 
-### Delete a User's Item
+### Delete an Item
 
 ```http
 DELETE /api/v1/users/:user_id/items/:item_id
@@ -374,7 +374,7 @@ Example Value:
 
 ---
 
-### Get User's Lists
+### Get all Lists
 ```http
 GET /api/v1/users/:user_id/lists
 ```
@@ -443,7 +443,7 @@ Example Value:
 
 ---
 
-### Get one List from a User
+### Get one List
 ```http
 GET "/api/v1/users/:user_id/lists/:list_id"
 ```
@@ -460,7 +460,7 @@ None
 
 | Code | Description |
 | :--- | :--- |
-| 201 | `CREATED` |
+| 200 | `OK` |
 
 Example Value:
 
@@ -475,6 +475,64 @@ Example Value:
             "items": []
         }
     }
+}
+```
+
+</details>
+
+---
+
+### Get all Items for a List
+```http
+GET "/api/v1/users/:user_id/lists/:list_id/items"
+```
+
+<details close>
+<summary>  Details </summary><br>
+This endpoint returns all items from one specific list of a user
+<br><br>
+    
+Parameters: <br>
+```
+None
+```
+
+| Code | Description |
+| :--- | :--- |
+| 200 | `OK` |
+
+Example Value:
+
+```json
+{
+    "data": [
+        {
+            "id": "2",
+            "type": "item",
+            "attributes": {
+                "user_id": 1,
+                "season": "fall",
+                "clothing_type": "shoes",
+                "color": "red",
+                "size": "12",
+                "image_url": "http://localhost:5000/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b31bf7735fbf690cc430df1a72be219350abbfe6/default-image.jpeg",
+                "notes": "updated"
+            }
+        },
+        {
+            "id": "1",
+            "type": "item",
+            "attributes": {
+                "user_id": 1,
+                "season": "all_season",
+                "clothing_type": "accessories",
+                "color": "black",
+                "size": "unisex",
+                "image_url": "http://localhost:5000/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--8e3415ed60f7cd82422e28d1bde574bd363be56b/default-image.jpeg",
+                "notes": "worn"
+            }
+        }
+    ]
 }
 ```
 
