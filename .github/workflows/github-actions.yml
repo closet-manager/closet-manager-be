@@ -1,8 +1,6 @@
 name: Ruby
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -38,8 +36,8 @@ jobs:
         run: bin/rake
 
   deployment:
-    if: ${{ github.ref == 'refs/heads/main' && github.event.pull_request.merged == true }}
     needs: test
+    if: ${{ github.ref == 'refs/heads/main' && needs.test.result == 'success' }}
     runs-on: ubuntu-latest
 
     steps:
