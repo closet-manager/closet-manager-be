@@ -35,6 +35,9 @@ jobs:
       - name: Run tests
         run: bin/rake
 
+      - name: Set test result output
+        run: echo ::set-output name=result::${{ job.status }}
+
   deployment:
     needs: test
     if: ${{ github.ref == 'refs/heads/main' && needs.test.result == 'success' }}
