@@ -36,3 +36,17 @@ jobs:
         
       - name: Run tests
         run: bin/rake
+
+  deployment:
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && github.event.pull_request.merged == true }}
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.13
+        with: 
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "closet-manager-be"
+          heroku_email: "beddings22@turing.edu"
