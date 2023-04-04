@@ -15,5 +15,5 @@ Rails.application.routes.draw do
       end
     end
   end
-  get '*other', to: 'home#index'
+  # get '*other', to: 'home#index'
 end
