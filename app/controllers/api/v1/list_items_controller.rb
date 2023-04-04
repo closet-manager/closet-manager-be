@@ -1,4 +1,9 @@
 class Api::V1::ListItemsController < ApplicationController
+  def index
+    list = List.find(params[:list_id])
+    render json: ItemSerializer.new(list.items) 
+  end
+  
   def create
     item = Item.find(params[:item_id])
     list = List.find(params[:list_id])
