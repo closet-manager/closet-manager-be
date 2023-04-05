@@ -53,5 +53,12 @@ RSpec.describe Item, type: :model do
         expect(user.items.filter_by(nil, "other", "blue")).to eq([])
       end
     end
+
+    describe 'test for github actions' do
+      it 'will fail' do
+        x = 1
+        expect(x).to eq(2)
+      end
+    end
   end
 end
