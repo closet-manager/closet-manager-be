@@ -37,8 +37,6 @@ jobs:
 
       - name: Set test result
         run: echo "TEST_RESULT=$JOB_STATUS" >> $GITHUB_ENV
-        env:
-          JOB_STATUS: ${{ job.status }}
 
   deployment:
     needs: test
