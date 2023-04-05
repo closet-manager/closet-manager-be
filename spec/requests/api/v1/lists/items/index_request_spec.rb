@@ -64,4 +64,26 @@ describe 'GET /users/:id/lists/:list_id/items' do
       expect(response_body[:data]).to eq([])
     end
   end
+
+  context 'if the list does not exist' do
+    it 'will return an error' do
+      user = create(:user)
+
+      get "/api/v1/users/#{user.id}/lists/1/items"
+
+      response_body = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(404)
+
+      expect(response_body).to have_key(:error)
+      expect(response_body[:error]).to be_an(Array)
+
+      expect(response_body[:error][0]).to have_key(:title)
+      expect(response_body[:error][0][:title]).to eq("Couldn't find List with 'id'=1")
+
+      expect(response_body[:error][0]).to have_key(:status)
+      expect(response_body[:error][0][:status]).to eq("404")
+    end
+  end
 end
