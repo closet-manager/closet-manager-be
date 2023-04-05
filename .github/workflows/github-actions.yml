@@ -35,12 +35,8 @@ jobs:
       - name: Run tests
         run: bin/rake
 
-      - name: Set test result
-        run: echo "TEST_RESULT=$JOB_STATUS" >> $GITHUB_ENV
-
   deployment:
     needs: test
-    if: ${{ github.ref == 'refs/heads/main' && env.TEST_RESULT == 'success' }}
     runs-on: ubuntu-latest
 
     steps:
