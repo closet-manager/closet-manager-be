@@ -19,7 +19,6 @@ jobs:
     env:
       RAILS_ENV: test
       DATABASE_URL: "postgres://postgres:password@localhost:5432/closet_manager_be_test"
-      TEST_RESULT: ${{ job.status }}
 
     steps:
       - uses: actions/checkout@v3
@@ -35,6 +34,11 @@ jobs:
         
       - name: Run tests
         run: bin/rake
+
+      - name: Set test result
+        run: echo "TEST_RESULT=$JOB_STATUS" >> $GITHUB_ENV
+        env:
+          JOB_STATUS: ${{ job.status }}
 
   deployment:
     needs: test
