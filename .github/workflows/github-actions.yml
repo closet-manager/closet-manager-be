@@ -19,6 +19,7 @@ jobs:
     env:
       RAILS_ENV: test
       DATABASE_URL: "postgres://postgres:password@localhost:5432/closet_manager_be_test"
+      TEST_RESULT: ${{ job.status }}
 
     steps:
       - uses: actions/checkout@v3
@@ -35,19 +36,19 @@ jobs:
       - name: Run tests
         run: bin/rake
 
-      - name: Set test result output
-        run: echo ::set-output name=result::${{ job.status }}
+      # - name: Set test result output
+      #   run: echo ::set-output name=result::${{ job.status }}
 
-  # deployment:
-  #   needs: test
-  #   if: ${{ github.ref == 'refs/heads/main' && needs.test.result == 'success' }}
-  #   runs-on: ubuntu-latest
+  deployment:
+    needs: test
+    if: ${{ env.TEST_RESULT == 'success' }}
+    runs-on: ubuntu-latest
 
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - name: Deploy to Heroku
-  #       uses: akhileshns/heroku-deploy@v3.12.13
-  #       with: 
-  #         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-  #         heroku_app_name: "closet-manager-be"
-  #         heroku_email: "beddings22@turing.edu"
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.13
+        with: 
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "closet-manager-be"
+          heroku_email: "beddings22@turing.edu"
