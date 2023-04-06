@@ -8,7 +8,9 @@ This application exposes backend endpoints for our frontend application to consu
 
 You can find our Frontend Repo: [Here](https://github.com/closet-manager/closet-manager-fe) 
 
-Visit our Backend App on: [Heroku](https://closet-manager-be.herokuapp.com/)
+Visit our Apps:<br>
+- Backend: [Heroku](https://closet-manager-be.herokuapp.com/)<br>
+- Frontend: [Vercel](https://closet-manager-fe.vercel.app/)<br>
 
 This project follows guidelines set in place by Turing School of Software & Design. For more information on project requirements: [Capstone Project](https://mod4.turing.edu/projects/capstone/)
 
