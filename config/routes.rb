@@ -15,6 +15,7 @@ Rails.application.routes.draw do
           resources :list_items, only: [:create]
         end
       end
+      resources :events, only: [:create] 
     end
   end
   # get '*other', to: 'home#index'
