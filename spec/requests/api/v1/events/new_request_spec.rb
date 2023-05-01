@@ -80,4 +80,38 @@ describe 'POST /events' do
       expect(EventItem.count).to eq(3)
     end
   end
+
+  context 'if the item does not exist' do
+    it 'returns an error' do
+      user = create(:user)
+      event = Event.create!(outfit_date: Date.today.strftime('%Y-%m-%d'))
+      
+      event_params = { 
+        outfit_date: Date.today.strftime('%Y-%m-%d'),
+        item_id: 9999999
+      }
+
+      headers = {"CONTENT_TYPE": "application/json"}
+
+      expect(Event.count).to eq(1)
+      expect(EventItem.count).to eq(0)
+
+      post '/api/v1/events', headers: headers, params: JSON.generate(event: event_params)
+
+      event_response = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(400)
+
+      expect(event_response).to have_key(:error)
+      expect(event_response[:error]).to be_a(Array)
+      expect(event_response[:error][0]).to have_key(:title)
+      expect(event_response[:error][0][:title]).to be_a(String)
+      expect(event_response[:error][0]).to have_key(:status)
+      expect(event_response[:error][0][:status]).to be_a(String)
+
+      expect(Event.count).to eq(1)
+      expect(EventItem.count).to eq(0)
+    end
+  end
 end
