@@ -3,9 +3,19 @@ require 'rails_helper'
 describe 'POST /events' do
   context 'if the event is successfully created' do
     it 'creates an event' do
-      event_params = { outfit_date: Date.today.strftime('%Y-%m-%d') }
+      user = create(:user)
+
+      item = Item.create!(user_id: user.id, season: "spring", clothing_type: "tops", size: "L", color: "red", notes: "in closet")
+      
+      event_params = { 
+        outfit_date: Date.today.strftime('%Y-%m-%d'),
+        item_id: item.id
+      }
 
       headers = {"CONTENT_TYPE": "application/json"}
+
+      expect(Event.count).to eq(0)
+      expect(EventItem.count).to eq(0)
 
       post '/api/v1/events', headers: headers, params: JSON.generate(event: event_params)
 
@@ -14,20 +24,60 @@ describe 'POST /events' do
       expect(response).to be_successful
       expect(response.status).to eq(201)
 
-      expect(event_response).to have_key(:data)
-      expect(event_response[:data]).to be_a(Hash)
+      expect(event_response).to have_key(:message)
+      expect(event_response[:message]).to be_a(String)
+
+      expect(Event.count).to eq(1)
+      expect(EventItem.count).to eq(1)
+    end
+  end
+
+  context 'if the event is already created' do
+    it 'can create multiple event items for one event' do
+      user = create(:user)
+      event = Event.create!(outfit_date: Date.today.strftime('%Y-%m-%d'))
+      item = Item.create!(user_id: user.id, season: "spring", clothing_type: "tops", size: "L", color: "red", notes: "in closet")
       
-      expect(event_response[:data]).to have_key(:id)
-      expect(event_response[:data][:id]).to be_a(String)
+      event_params = { 
+        outfit_date: Date.today.strftime('%Y-%m-%d'),
+        item_id: item.id
+      }
+
+      event_params2 = { 
+        outfit_date: Date.today.strftime('%Y-%m-%d'),
+        item_id: item.id
+      }
+
+      event_params3 = { 
+        outfit_date: Date.today.strftime('%Y-%m-%d'),
+        item_id: item.id
+      }
+
+      headers = {"CONTENT_TYPE": "application/json"}
+
+      expect(Event.count).to eq(1)
+      expect(EventItem.count).to eq(0)
+
+      post '/api/v1/events', headers: headers, params: JSON.generate(event: event_params)
+
+      event_response = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to be_successful
+      expect(response.status).to eq(201)
+
+      expect(event_response).to have_key(:message)
+      expect(event_response[:message]).to be_a(String)
+
+      expect(Event.count).to eq(1)
+      expect(EventItem.count).to eq(1)
       
-      expect(event_response[:data]).to have_key(:type)
-      expect(event_response[:data][:type]).to be_a(String)
-      
-      expect(event_response[:data]).to have_key(:attributes)
-      expect(event_response[:data][:attributes]).to be_a(Hash)
-      
-      expect(event_response[:data][:attributes]).to have_key(:outfit_date)
-      expect(event_response[:data][:attributes][:outfit_date]).to be_a(String)
+      post '/api/v1/events', headers: headers, params: JSON.generate(event: event_params2)
+      expect(Event.count).to eq(1)
+      expect(EventItem.count).to eq(2)
+            
+      post '/api/v1/events', headers: headers, params: JSON.generate(event: event_params3)
+      expect(Event.count).to eq(1)
+      expect(EventItem.count).to eq(3)
     end
   end
 end
