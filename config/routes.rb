@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   namespace :api do 
     namespace :v1 do 
       resources :users, only: [:show] do
-        get '/items/find_all', to: 'items/search#show'
+        get '/items/find_all', to: 'items/search#index'
         resources :items, only: [:show, :create, :update, :index, :destroy]
         resources :lists, only: [:index, :show, :create, :destroy] do
           resources :items, only: [:index], controller: :list_items
@@ -15,7 +15,8 @@ Rails.application.routes.draw do
           resources :list_items, only: [:create]
         end
       end
-      resources :events, only: [:create] 
+      resources :events, only: [:create]
+       get '/event_items/find_all', to: 'event_items/search#index'
     end
   end
   # get '*other', to: 'home#index'
