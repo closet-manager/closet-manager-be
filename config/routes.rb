@@ -11,12 +11,13 @@ Rails.application.routes.draw do
         end
       end
       resources :items, only: [] do
+        delete '/:date', to: 'event_items#destroy'
         resources :lists, only: [:destroy], controller: :list_items do
           resources :list_items, only: [:create]
         end
       end
-      resources :events, only: [:create]
-       get '/event_items/find_all', to: 'event_items/search#index'
+      resources :events, only: [:create] 
+      get '/event_items/find_all', to: 'event_items/search#index'
     end
   end
   # get '*other', to: 'home#index'
