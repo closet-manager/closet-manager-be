@@ -16,7 +16,7 @@ Rails.application.routes.draw do
           resources :list_items, only: [:create]
         end
       end
-      resources :events, only: [:create] 
+      resources :events, only: [:index, :create] 
       get '/event_items/find_all', to: 'event_items/search#index'
     end
   end

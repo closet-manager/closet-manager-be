@@ -1,4 +1,9 @@
 class Api::V1::EventsController < ApplicationController
+  def index
+    events = Event.all
+    render json: EventSerializer.new(events)
+  end
+
   def create
     event = Event.find_by(outfit_date: params[:event][:outfit_date])
     if !event.nil?
