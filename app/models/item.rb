@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   has_many :lists, through: :list_items, dependent: :destroy
 
   validates_presence_of :clothing_type, :season, :color
+  # validates :favorite, inclusion: { in: [true, false] }
   validates :image, {
                       presence: true
                     }
@@ -21,11 +22,13 @@ class Item < ApplicationRecord
     url_for(image)
   end
 
-  def self.filter_by(season=nil, clothing_type=nil, color=nil)
+  def self.filter_by(season=nil, clothing_type=nil, color=nil, favorite)
     filter_hash = {}
     filter_hash[:season] = season if season.present?
+    # require 'pry'; binding.pry
     filter_hash[:clothing_type] = clothing_type if clothing_type.present?
     filter_hash[:color] = color if color.present?
+    filter_hash[:favorite] = favorite 
     
     self.where(filter_hash)
   end
