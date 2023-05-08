@@ -25,7 +25,6 @@ class Item < ApplicationRecord
   def self.filter_by(season=nil, clothing_type=nil, color=nil, favorite=nil)
     filter_hash = {}
     filter_hash[:season] = season if season.present?
-    # require 'pry'; binding.pry
     filter_hash[:clothing_type] = clothing_type if clothing_type.present?
     filter_hash[:color] = color if color.present?
     filter_hash[:favorite] = favorite if favorite.present?

@@ -25,10 +25,8 @@ RSpec.describe Item, type: :model do
         item5 = Item.create!(user_id: user.id, season: "fall", clothing_type: "tops", size: "L", color: "orange", favorite: false)
 
         #season
-        expect(user.items.filter_by("spring", nil, nil, true)).to eq([item1, item2])
-        expect(user.items.filter_by("winter", nil, nil, true)).to eq([])
-        # expect(user.items.filter_by("spring")).to eq([item1, item2])
-        # expect(user.items.filter_by("winter")).to eq([])
+        expect(user.items.filter_by("spring")).to eq([item1, item2])
+        expect(user.items.filter_by("winter")).to eq([])
 
         #clothing_type
         expect(user.items.filter_by(nil, "bottoms", nil, false)).to eq([item3, item4])

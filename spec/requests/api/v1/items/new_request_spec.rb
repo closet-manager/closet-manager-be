@@ -14,7 +14,6 @@ describe 'POST /users/:id/items' do
                       "size": "7",
                       "image": nil,
                       "notes": "testing header"
-                      # "favorite": true
                     }
 
       expect(Item.count).to eq(0)
@@ -60,8 +59,8 @@ describe 'POST /users/:id/items' do
       expect(item_response[:data][:attributes]).to have_key(:notes)
       expect(item_response[:data][:attributes][:notes]).to be_a(String)
 
-      # expect(item_response[:data][:attributes]).to have_key(:favorite)
-      # expect(item_response[:data][:attributes][:favorite]).to be_a(Boolean)
+      expect(item_response[:data][:attributes]).to have_key(:favorite)
+      expect(item_response[:data][:attributes][:favorite]).to be_in([true, false])
     end
   end
 
