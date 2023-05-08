@@ -58,6 +58,9 @@ describe 'POST /users/:id/items' do
 
       expect(item_response[:data][:attributes]).to have_key(:notes)
       expect(item_response[:data][:attributes][:notes]).to be_a(String)
+
+      expect(item_response[:data][:attributes]).to have_key(:favorite)
+      expect(item_response[:data][:attributes][:favorite]).to be_in([true, false])
     end
   end
 

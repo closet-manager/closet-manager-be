@@ -7,5 +7,6 @@ class ItemSerializer
              :color,
              :size,
              :image_url,
-             :notes
+             :notes,
+             :favorite
 end

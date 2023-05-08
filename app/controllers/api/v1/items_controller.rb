@@ -33,10 +33,10 @@ class Api::V1::ItemsController < ApplicationController
   private 
   
   def item_params
-    params.permit(:user_id, :season, :clothing_type, :size, :color, :image, :notes)
+    params.permit(:user_id, :season, :clothing_type, :size, :color, :image, :notes, :favorite)
   end
   
   def update_item_params
-    params.require(:item).permit(:season, :clothing_type, :size, :color, :notes)
+    params.require(:item).permit(:season, :clothing_type, :size, :color, :notes, :favorite)
   end
 end
