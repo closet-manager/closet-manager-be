@@ -33,6 +33,35 @@ describe 'PATCH /users/:user_id/items/:item_id' do
       expect(item.notes).to_not eq("in closet")
       expect(item.color).to_not eq("red")
     end
+
+    it 'udpates the favorite column' do
+      user = create(:user)
+    
+      blob = ActiveStorage::Blob.create_after_upload!(
+                                                        io: File.open('src/assets/test_image.png'),
+                                                        filename: 'test_image.png',
+                                                        content_type: 'image/png'
+                                                      )
+      item = Item.create!(user_id: user.id, season: "spring", clothing_type: "tops", size: "L", color: "red", notes: "in closet")
+      
+      item.image.attach(blob)
+
+      previous_item = Item.last
+
+      item_params = { favorite: true }
+      
+      headers = { "CONTENT_TYPE" => "application/json" }
+
+      expect(item.favorite?).to eq(false)
+
+      patch "/api/v1/users/#{user.id}/items/#{item.id}", headers: headers, params: JSON.generate({item: item_params})
+      response_body = JSON.parse(response.body, symbolize_names: true)
+      
+      item = Item.find_by(id: item.id)
+      
+      expect(item.favorite?).to eq(true)
+      expect(response).to be_successful
+    end
   end
 
   context 'if the item is not successfully updated' do

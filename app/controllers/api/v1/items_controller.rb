@@ -37,6 +37,6 @@ class Api::V1::ItemsController < ApplicationController
   end
   
   def update_item_params
-    params.require(:item).permit(:season, :clothing_type, :size, :color, :notes)
+    params.require(:item).permit(:season, :clothing_type, :size, :color, :notes, :favorite)
   end
 end
