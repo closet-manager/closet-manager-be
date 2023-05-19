@@ -680,9 +680,69 @@ Example Value:
 
 ---
 
+### Get all Events
+```http
+POST "/api/v1/events"
+```
+
+<details close>
+<summary>  Details </summary><br>
+This endpoint returns all events(dates).
+<br><br>
+    
+Parameters: <br>
+```
+None
+```
+
+| Code | Description |
+| :--- | :--- |
+| 200 | `OK` |
+
+Example Value:
+
+```json
+{
+    "data": [
+        {
+            "id": "1",
+            "type": "event",
+            "attributes": {
+                "outfit_date": "2023-04-30"
+            }
+        },
+        {
+            "id": "2",
+            "type": "event",
+            "attributes": {
+                "outfit_date": "2023-04-30"
+            }
+        },
+        {
+            "id": "3",
+            "type": "event",
+            "attributes": {
+                "outfit_date": "2023-05-01"
+            }
+        },
+        {
+            "id": "4",
+            "type": "event",
+            "attributes": {
+                "outfit_date": "2023-06-01"
+            }
+        }
+    ]
+}
+```
+
+</details>
+
+---
+
 ### Create an Event with an Item 
 ```http
-POST "/api/v1/event_items/find_all?date=<event.outfit_date>
+POST "/api/v1/event_items/find_all?date=<event.outfit_date>"
 ```
 
 <details close>
