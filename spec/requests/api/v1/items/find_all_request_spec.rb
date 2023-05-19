@@ -113,6 +113,33 @@ describe 'GET /users/:id/items/find_all?' do
       expect(items_response[:data][0][:id]).to eq(item3.id.to_s)
     end
 
+    it 'can find a users items based on four query filters' do
+      user = create(:user)
+      blob = ActiveStorage::Blob.create_after_upload!(
+                                                      io: File.open('src/assets/test_image.png'),
+                                                      filename: 'test_image.png',
+                                                      content_type: 'image/png'
+                                                      )
+      item1 = Item.create!(user_id: user.id, season: "spring", clothing_type: "tops", size: "L", color: "red", favorite: true)
+      item2 = Item.create!(user_id: user.id, season: "fall", clothing_type: "bottoms", size: "L", color: "black", favorite: false)
+      item3 = Item.create!(user_id: user.id, season: "fall", clothing_type: "bottoms", size: "L", color: "blue", favorite: true)
+      Item.all.each do |item|
+        item.image.attach(blob)
+      end
+
+      get "/api/v1/users/#{user.id}/items/find_all?season=fall&clothing_type=bottoms&color=blue&favorite=true"
+
+      items_response = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(items_response).to have_key(:data)
+      expect(items_response[:data]).to be_a(Array)
+      expect(items_response[:data].count).to eq(1)
+      expect(items_response[:data][0][:id]).to eq(item3.id.to_s)
+    end
+
     it 'can return an empty array if no items match the filters' do
       user = create(:user)
       blob = ActiveStorage::Blob.create_after_upload!(
