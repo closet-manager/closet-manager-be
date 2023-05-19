@@ -798,6 +798,62 @@ Example Value:
 }
 ```
 
+---
+
+### Get all Items for an Event
+```http
+POST "/api/v1/event_items/find_all?date=<event.outfit_date>"
+```
+
+<details close>
+<summary>  Details </summary><br>
+This endpoint returns all items for an event(date).
+<br><br>
+    
+Parameters: <br>
+```
+None
+```
+
+| Code | Description |
+| :--- | :--- |
+| 200 | `OK` |
+
+Example Value:
+
+```json
+{
+    "data": [
+        {
+            "id": "2",
+            "type": "item",
+            "attributes": {
+                "user_id": 1,
+                "season": "spring",
+                "clothing_type": "accessories",
+                "color": "black",
+                "size": "7",
+                "image_url": "http://localhost:5000/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--d6ccc60a3340043d8b0ed6ddf45f9e3cce821ca5/Screen%20Shot%202023-03-03%20at%2010.09.26.png",
+                "notes": "this is an update"
+            }
+        },
+        {
+            "id": "1",
+            "type": "item",
+            "attributes": {
+                "user_id": 1,
+                "season": "spring",
+                "clothing_type": "tops",
+                "color": "red",
+                "size": "S",
+                "image_url": "http://localhost:5000/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a6ea4fa5b39cfe49525034e295901dad4ee08fff/default-image.jpeg",
+                "notes": "worn"
+            }
+        }
+    ]
+}
+```
+
 </details>
 </details>
 
