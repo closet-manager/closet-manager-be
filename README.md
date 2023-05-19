@@ -125,7 +125,8 @@ Example Value:
                 "color": "black",
                 "size": "unisex",
                 "image_url": "http://localhost:5000/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--8e3415ed60f7cd82422e28d1bde574bd363be56b/default-image.jpeg",
-                "notes": "worn"
+                "notes": "worn",
+                "favorite": true
             }
         },
         {
@@ -138,7 +139,8 @@ Example Value:
                 "color": "red",
                 "size": "12",
                 "image_url": "http://localhost:5000/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b31bf7735fbf690cc430df1a72be219350abbfe6/default-image.jpeg",
-                "notes": "updated"
+                "notes": "updated",
+                "favorite": false
             }
         }
     ]
@@ -181,7 +183,8 @@ Example Value:
             "size": "Large",
             "color": "red",
             "image_url": "http://localhost:5000/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7a80867ed962af9718e097d1d7233e3499806a3d/IMG_7868.jpg",
-            "notes": "Hand wash only"
+            "notes": "Hand wash only",
+            "favorite": false
         }
     }
 }
@@ -193,7 +196,7 @@ Example Value:
 
 ### Get One Item based off a category
 ```http
-GET "/api/v1/users/:id/items/find_all?clothing_type=<clothing_type>&color=<color>&season=<season>"
+GET "/api/v1/users/:id/items/find_all?clothing_type=<clothing_type>&color=<color>&season=<season>&favorite=<true>"
 ```
 
 <details close>
@@ -225,7 +228,8 @@ Example Value:
                 "color": "black",
                 "size": "7",
                 "image_url": "https://closet-manager-be.herokuapp.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBKZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c5dcf33990f9535c749ff5729b2aac29cbe8875b/blackshoes.png",
-                "notes": "brand new in box"
+                "notes": "brand new in box",
+                "favorite": true
             }
         },
         {
@@ -238,7 +242,8 @@ Example Value:
                 "color": "red",
                 "size": "12",
                 "image_url": "https://closet-manager-be.herokuapp.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4a0bb858ff6fb906e9610c410adf84eda723d1bd/blackshoes.png",
-                "notes": "recently cleaned"
+                "notes": "recently cleaned",
+                "favorite": true
             }
         }
     ]
@@ -282,7 +287,8 @@ Example Value:
             "color": "black",
             "size": "7",
             "image_url": "http://localhost:5000/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7a80867ed962af9718e097d1d7233e3499806a3d/IMG_7868.jpg",
-            "notes": "brand new in box"
+            "notes": "brand new in box",
+            "favorite": false
         }
     }
 }
@@ -310,7 +316,8 @@ Parameters: <br>
               "color": "red",
               "clothing_type": "shoes",
               "size": "12",
-              "notes": "updated"
+              "notes": "updated",
+              "favorite": false
             }
 }
 ```
@@ -333,7 +340,8 @@ Example Value:
             "color": "red",
             "size": "12",
             "image_url": "http://localhost:5000/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--8e3415ed60f7cd82422e28d1bde574bd363be56b/default-image.jpeg",
-            "notes": "updated"
+            "notes": "updated",
+            "favorite": false
         }
     }
 }
@@ -518,7 +526,8 @@ Example Value:
                 "color": "red",
                 "size": "12",
                 "image_url": "http://localhost:5000/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b31bf7735fbf690cc430df1a72be219350abbfe6/default-image.jpeg",
-                "notes": "updated"
+                "notes": "updated",
+                "favorite": false
             }
         },
         {
@@ -531,7 +540,8 @@ Example Value:
                 "color": "black",
                 "size": "unisex",
                 "image_url": "http://localhost:5000/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--8e3415ed60f7cd82422e28d1bde574bd363be56b/default-image.jpeg",
-                "notes": "worn"
+                "notes": "worn",
+                "favorite": false
             }
         }
     ]
@@ -834,7 +844,8 @@ Example Value:
                 "color": "black",
                 "size": "7",
                 "image_url": "http://localhost:5000/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--d6ccc60a3340043d8b0ed6ddf45f9e3cce821ca5/Screen%20Shot%202023-03-03%20at%2010.09.26.png",
-                "notes": "this is an update"
+                "notes": "this is an update",
+                "favorite": false
             }
         },
         {
@@ -847,7 +858,8 @@ Example Value:
                 "color": "red",
                 "size": "S",
                 "image_url": "http://localhost:5000/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a6ea4fa5b39cfe49525034e295901dad4ee08fff/default-image.jpeg",
-                "notes": "worn"
+                "notes": "worn",
+                "favorite": false
             }
         }
     ]
