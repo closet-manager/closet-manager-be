@@ -19,7 +19,7 @@ This project follows guidelines set in place by Turing School of Software & Desi
 
 ## :information_source:About Closet Collection
 
-Closet Collection is your ultimate solution to organize your wardrobe. With this app, you can easily manage your clothing collection, take photos of your clothing items, create custom lists for trips or general organization, and categorize your wardrobe by color, season, and clothing type for easy filtering. You can add notes to your clothing items, such as if you have lent an item to a friend or if it is at the dry cleaners. In addition, you can create personalized lists for events or trips, and add items to the list as packing reminders. Finally, if you ever need to make changes, you can easily delete items from your closet or from a list. Say goodbye to cluttered closets and disorganized trips, and say hello to the perfect wardrobe management tool with Closet Collection.
+Closet Collection is your ultimate solution to organize your wardrobe. With this app, you can easily manage your clothing collection, take photos of your clothing items, create custom lists for trips or general organization, preselect items to create outfits for specific dates, favorite items, and categorize your wardrobe by color, season, clothing type, and favorites for easy filtering. You can add notes to your clothing items, such as if you have lent an item to a friend or if it is at the dry cleaners. In addition, you can create personalized lists for events or trips, and add items to the list as packing reminders. Finally, if you ever need to make changes, you can easily delete items from your closet or from a list. Say goodbye to cluttered closets and disorganized trips, and say hello to the perfect wardrobe management tool with Closet Collection.
 
 ## :computer:Technologies
 - Rails 5.2.8
@@ -125,7 +125,8 @@ Example Value:
                 "color": "black",
                 "size": "unisex",
                 "image_url": "http://localhost:5000/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--8e3415ed60f7cd82422e28d1bde574bd363be56b/default-image.jpeg",
-                "notes": "worn"
+                "notes": "worn",
+                "favorite": true
             }
         },
         {
@@ -138,7 +139,8 @@ Example Value:
                 "color": "red",
                 "size": "12",
                 "image_url": "http://localhost:5000/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b31bf7735fbf690cc430df1a72be219350abbfe6/default-image.jpeg",
-                "notes": "updated"
+                "notes": "updated",
+                "favorite": false
             }
         }
     ]
@@ -181,7 +183,8 @@ Example Value:
             "size": "Large",
             "color": "red",
             "image_url": "http://localhost:5000/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7a80867ed962af9718e097d1d7233e3499806a3d/IMG_7868.jpg",
-            "notes": "Hand wash only"
+            "notes": "Hand wash only",
+            "favorite": false
         }
     }
 }
@@ -193,7 +196,7 @@ Example Value:
 
 ### Get One Item based off a category
 ```http
-GET "/api/v1/users/:id/items/find_all?clothing_type=<clothing_type>&color=<color>&season=<season>"
+GET "/api/v1/users/:id/items/find_all?clothing_type=<clothing_type>&color=<color>&season=<season>&favorite=<true>"
 ```
 
 <details close>
@@ -225,7 +228,8 @@ Example Value:
                 "color": "black",
                 "size": "7",
                 "image_url": "https://closet-manager-be.herokuapp.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBKZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c5dcf33990f9535c749ff5729b2aac29cbe8875b/blackshoes.png",
-                "notes": "brand new in box"
+                "notes": "brand new in box",
+                "favorite": true
             }
         },
         {
@@ -238,7 +242,8 @@ Example Value:
                 "color": "red",
                 "size": "12",
                 "image_url": "https://closet-manager-be.herokuapp.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4a0bb858ff6fb906e9610c410adf84eda723d1bd/blackshoes.png",
-                "notes": "recently cleaned"
+                "notes": "recently cleaned",
+                "favorite": true
             }
         }
     ]
@@ -282,7 +287,8 @@ Example Value:
             "color": "black",
             "size": "7",
             "image_url": "http://localhost:5000/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7a80867ed962af9718e097d1d7233e3499806a3d/IMG_7868.jpg",
-            "notes": "brand new in box"
+            "notes": "brand new in box",
+            "favorite": false
         }
     }
 }
@@ -310,7 +316,8 @@ Parameters: <br>
               "color": "red",
               "clothing_type": "shoes",
               "size": "12",
-              "notes": "updated"
+              "notes": "updated",
+              "favorite": false
             }
 }
 ```
@@ -333,7 +340,8 @@ Example Value:
             "color": "red",
             "size": "12",
             "image_url": "http://localhost:5000/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--8e3415ed60f7cd82422e28d1bde574bd363be56b/default-image.jpeg",
-            "notes": "updated"
+            "notes": "updated",
+            "favorite": false
         }
     }
 }
@@ -518,7 +526,8 @@ Example Value:
                 "color": "red",
                 "size": "12",
                 "image_url": "http://localhost:5000/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b31bf7735fbf690cc430df1a72be219350abbfe6/default-image.jpeg",
-                "notes": "updated"
+                "notes": "updated",
+                "favorite": false
             }
         },
         {
@@ -531,7 +540,8 @@ Example Value:
                 "color": "black",
                 "size": "unisex",
                 "image_url": "http://localhost:5000/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--8e3415ed60f7cd82422e28d1bde574bd363be56b/default-image.jpeg",
-                "notes": "worn"
+                "notes": "worn",
+                "favorite": false
             }
         }
     ]
@@ -677,10 +687,190 @@ Example Value:
 ```
 
 </details>
+
+---
+
+### Get all Events
+```http
+POST "/api/v1/events"
+```
+
+<details close>
+<summary>  Details </summary><br>
+This endpoint returns all events(dates).
+<br><br>
+    
+Parameters: <br>
+```
+None
+```
+
+| Code | Description |
+| :--- | :--- |
+| 200 | `OK` |
+
+Example Value:
+
+```json
+{
+    "data": [
+        {
+            "id": "1",
+            "type": "event",
+            "attributes": {
+                "outfit_date": "2023-04-30"
+            }
+        },
+        {
+            "id": "2",
+            "type": "event",
+            "attributes": {
+                "outfit_date": "2023-04-30"
+            }
+        },
+        {
+            "id": "3",
+            "type": "event",
+            "attributes": {
+                "outfit_date": "2023-05-01"
+            }
+        },
+        {
+            "id": "4",
+            "type": "event",
+            "attributes": {
+                "outfit_date": "2023-06-01"
+            }
+        }
+    ]
+}
+```
+
+</details>
+
+---
+
+### Create an Event with an Item 
+```http
+POST "/api/v1/event_items/find_all?date=<event.outfit_date>"
+```
+
+<details close>
+<summary>  Details </summary><br>
+This endpoint creates a an event(date on calendar) and an item associated to the date(event item).
+<br><br>
+    
+Parameters: <br>
+```
+None
+```
+
+| Code | Description |
+| :--- | :--- |
+| 201 | `CREATED` |
+
+Example Value:
+
+```json
+{
+    "message": "Item successfully added to date."
+}
+```
+
+</details>
+
+---
+
+### Delete an Item from an Event
+```http
+DELETE "/api/v1/items/:item_id/<event.outfit_date>"
+```
+
+<details close>
+<summary>  Details </summary><br>
+This endpoint deletes an item from an event(date on calendar)
+<br><br>
+    
+Parameters: <br>
+```
+None
+```
+
+| Code | Description |
+| :--- | :--- |
+| 200 | `OK` |
+
+Example Value:
+
+```json
+{
+    "message": "The item has been deleted from this date"
+}
+```
+
+---
+
+### Get all Items for an Event
+```http
+POST "/api/v1/event_items/find_all?date=<event.outfit_date>"
+```
+
+<details close>
+<summary>  Details </summary><br>
+This endpoint returns all items for an event(date).
+<br><br>
+    
+Parameters: <br>
+```
+None
+```
+
+| Code | Description |
+| :--- | :--- |
+| 200 | `OK` |
+
+Example Value:
+
+```json
+{
+    "data": [
+        {
+            "id": "2",
+            "type": "item",
+            "attributes": {
+                "user_id": 1,
+                "season": "spring",
+                "clothing_type": "accessories",
+                "color": "black",
+                "size": "7",
+                "image_url": "http://localhost:5000/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--d6ccc60a3340043d8b0ed6ddf45f9e3cce821ca5/Screen%20Shot%202023-03-03%20at%2010.09.26.png",
+                "notes": "this is an update",
+                "favorite": false
+            }
+        },
+        {
+            "id": "1",
+            "type": "item",
+            "attributes": {
+                "user_id": 1,
+                "season": "spring",
+                "clothing_type": "tops",
+                "color": "red",
+                "size": "S",
+                "image_url": "http://localhost:5000/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a6ea4fa5b39cfe49525034e295901dad4ee08fff/default-image.jpeg",
+                "notes": "worn",
+                "favorite": false
+            }
+        }
+    ]
+}
+```
+
+</details>
 </details>
 
 ## :twisted_rightwards_arrows:Database Schema
-![Screen Shot 2023-04-03 at 11 07 24 AM](https://user-images.githubusercontent.com/111314699/229566299-3ecdfa16-cd27-4ff5-ac06-f0bb2b22f7de.png)
+<img src="src/assets/schema_design.png" alt="Closet Collection Schema" width="2000" height="auto" />
 
 ## :link:Contributors
 <b>Kelsie Porter</b><br> 
