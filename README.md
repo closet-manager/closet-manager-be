@@ -680,7 +680,7 @@ Example Value:
 </details>
 
 ## :twisted_rightwards_arrows:Database Schema
-![Screen Shot 2023-04-03 at 11 07 24 AM](https://user-images.githubusercontent.com/111314699/229566299-3ecdfa16-cd27-4ff5-ac06-f0bb2b22f7de.png)
+<img src="src/assets/schema_design.png" alt="Closet Collection Schema" width="2000" height="auto" />
 
 ## :link:Contributors
 <b>Kelsie Porter</b><br> 
