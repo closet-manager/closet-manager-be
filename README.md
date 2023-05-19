@@ -677,6 +677,68 @@ Example Value:
 ```
 
 </details>
+
+---
+
+### Create an Event with an Item 
+```http
+POST "/api/v1/event_items/find_all?date=<event.outfit_date>
+```
+
+<details close>
+<summary>  Details </summary><br>
+This endpoint creates a an event(date on calendar) and an item associated to the date(event item).
+<br><br>
+    
+Parameters: <br>
+```
+None
+```
+
+| Code | Description |
+| :--- | :--- |
+| 201 | `CREATED` |
+
+Example Value:
+
+```json
+{
+    "message": "Item successfully added to date."
+}
+```
+
+</details>
+
+---
+
+### Delete an Item from an Event
+```http
+DELETE "/api/v1/items/:item_id/<event.outfit_date>"
+```
+
+<details close>
+<summary>  Details </summary><br>
+This endpoint deletes an item from an event(date on calendar)
+<br><br>
+    
+Parameters: <br>
+```
+None
+```
+
+| Code | Description |
+| :--- | :--- |
+| 200 | `OK` |
+
+Example Value:
+
+```json
+{
+    "message": "The item has been deleted from this date"
+}
+```
+
+</details>
 </details>
 
 ## :twisted_rightwards_arrows:Database Schema
